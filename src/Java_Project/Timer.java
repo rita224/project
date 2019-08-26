@@ -21,11 +21,11 @@ public class Timer extends Thread{
 		
 		String time_display="00:";
 		
-		while(true)  //°»´ú
+		while(true)  //ï¿½ï¿½ï¿½ï¿½
 		{
 			if(second_frame.is_question_on==true)
 			{
-				for(time = 5;time>=-1;time--) {  //­p®É¾¹¥»Åé
+				for(time = 5;time>=-1;time--) {  //ï¿½pï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½
 					
 					if(second_frame.player1_answer!=0 && second_frame.player2_answer!=0)
 						break;
@@ -36,7 +36,7 @@ public class Timer extends Thread{
 						break;
 					}
 					
-					if(time<10)  //±Æª©
+					if(time<10)  //ï¿½Æªï¿½
 						time_display="00:0";
 					else
 						time_display="00:";
