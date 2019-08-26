@@ -8,7 +8,7 @@ public class Java_Project {
 		
 		//GUI�t�m
 		
-			//First_Frame�n�J�e�� hello
+			//First_Frame�n�J�e�� hello123
 			First_Frame first_frame = new First_Frame(data_base);  //���K�b�����n�J�e���� 1.�}��Second frame 2.��l�ƹC���i�{ 3.���a�]�m
 			first_frame.setVisible(true);
 			first_frame.setResizable(false);

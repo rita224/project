@@ -3,19 +3,19 @@ package Java_Project;
 public class Player extends Thread{
 	private int id;
 	private String name;
-	Player(int id , String name)  //«Øºc¤l
+	Player(int id , String name)  //ï¿½Øºcï¿½l
 	{
 		this.id=id;
 		this.name=name;
 	}
-	public void run(){  //start«á°õ¦æ¥H¤Uµ{¦¡
-		while(true)  //½T»{°õ¦æºü¶i¦æ
+	public void run(){  //startï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½Uï¿½{ï¿½ï¿½
+		while(true)  //ï¿½Tï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½
 		{
 			System.out.println("Hello! This is "+name);
 			
 			try
 			{
-				this.sleep(1000);  //millisecond
+				this.sleep(1000);  //millisecond helootest
 			}
 			catch(InterruptedException e)
 			{
