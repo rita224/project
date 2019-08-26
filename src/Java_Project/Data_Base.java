@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+//hello!!!!!!!!!!
+
 public class Data_Base {
 	
 	int num_question=20;
