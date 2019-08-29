@@ -150,48 +150,49 @@ public class Second_Frame extends JFrame implements KeyListener {
 		{
 			if(player1.getAnswer()==0)
 			{
+				if(e.getKeyCode() == KeyEvent.VK_A||e.getKeyCode() == KeyEvent.VK_S||e.getKeyCode() == KeyEvent.VK_D)
+				{
+					btn1.setBackground(Color.gray);
+					btn2.setBackground(Color.gray);
+					btn3.setBackground(Color.gray);
+				}
+				
 				if (e.getKeyCode() == KeyEvent.VK_A) {
 					player1.setAnswer(1);
 					btn1.setBackground(Color.yellow);
-					btn2.setBackground(Color.gray);
-					btn3.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_S) {
 					player1.setAnswer(2);
-					btn1.setBackground(Color.gray);
 					btn2.setBackground(Color.yellow);
-					btn3.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_D) {
 					player1.setAnswer(3);
-					btn1.setBackground(Color.gray);
-					btn2.setBackground(Color.gray);
 					btn3.setBackground(Color.yellow);
 				}
 			}
 			if(player2.getAnswer()==0)
 			{
+				if(e.getKeyCode() == KeyEvent.VK_J||e.getKeyCode() == KeyEvent.VK_K||e.getKeyCode() == KeyEvent.VK_L)
+				{
+					btn4.setBackground(Color.gray);
+					btn5.setBackground(Color.gray);
+					btn6.setBackground(Color.gray);
+				}
+				
 				if (e.getKeyCode() == KeyEvent.VK_J) {
 					player2.setAnswer(1);
 					btn4.setBackground(Color.yellow);
-					btn5.setBackground(Color.gray);
-					btn6.setBackground(Color.gray);
-		
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_K) {
 					player2.setAnswer(2);
-					btn4.setBackground(Color.gray);
 					btn5.setBackground(Color.yellow);
-					btn6.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_L) {
 					player2.setAnswer(3);
-					btn4.setBackground(Color.gray);
-					btn5.setBackground(Color.gray);
 					btn6.setBackground(Color.yellow);
 				}
 			}
