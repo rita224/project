@@ -4,6 +4,7 @@ public class Player extends Thread{
 	private int id;
 	private String name;
 	private int score = 0;
+	private int answer = 0;
 	
 	Player(int id , String name)  //«Øºc¤l
 	{
