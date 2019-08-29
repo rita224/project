@@ -6,10 +6,10 @@ import java.util.Random;
 public class Game extends Thread {
 
 	private boolean isGameOver = false;
-	private int player1_score = 0;
 	private int is_player1_correct = 0;
-	private int player2_score = 0;
+	private boolean is_player1_answer = false;
 	private int is_player2_correct = 0;
+	private boolean is_player2_answer = false;
 	private String[] str = new String[4];
 	private int round = 0;
 	public String winner_name = "";
@@ -20,60 +20,47 @@ public class Game extends Thread {
 	private Timer timer;
 	private Second_Frame second_frame;
 	private First_Frame first_frame;
+	private Player player1;
+	private Player player2;
 	
-	Game(Data_Base data_base, Second_Frame second_frame,First_Frame first_frame) // �غc�l
+	Game(Data_Base data_base, Second_Frame second_frame,First_Frame first_frame,Player player1,Player player2) // 嚙諍構嚙締
 	{
 		this.timer = new Timer(second_frame, this);
 		this.data_base = data_base;
 		this.second_frame = second_frame;
 		this.first_frame = first_frame;
+		this.player1 = player1;
+		this.player2 = player2;
 	}
 
-	public void run() // �]�C�����e
+	public void run() // 嚙稽嚙瘠嚙踝蕭嚙踝蕭嚙箴
 	{
 		Random rand = new Random();
 		int question_pointer = 0;
-		player1_score = 0;
-		player2_score = 0;
 
 		timer.start();
 
 		for (int run_question_num = 1; run_question_num <= 5; run_question_num++) {
 
-			// ��l��
+			// 嚙踝蕭l嚙踝蕭
 			initial_game();
 
-			// �X�D
+			// 嚙碼嚙瘩
 			question_pointer = rand.nextInt(data_base.num_question);
 
-			// �D�رƪ�
+			// 嚙瘩嚙諍排迎蕭
 			question_setText(question_pointer);
 			
-			// �ﶵ�ƪ�
+			// 嚙踝項嚙複迎蕭
 			option_setText(question_pointer);
 
-			// ���ݦ^���έp�ɾ��k�s
-			while (true) {
-				if (second_frame.is_question_on == false) // �p�ɾ���s
-					break;
+			// 嚙踝蕭嚙豎回嚙踝蕭嚙諄計嚙褕橘蕭嚙糊嚙編
+			wait_for_answer();
 
-				if (second_frame.player1_answer != 0 && second_frame.player2_answer != 0) // ���^���A���e�����p��
-				{
-					second_frame.is_question_on = false;
-					break;
-				}
-
-				try {
-					Thread.sleep(500);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			// �ﵪ�סB�έp����
+			// 嚙踝答嚙論、嚙諄計嚙踝蕭嚙踝蕭
 			answer_show(question_pointer);
 
-			// ���⦹�D���Z
+			// 嚙踝蕭嚙賤此嚙瘩嚙踝蕭嚙稿
 			score(question_pointer);
 
 			try {
@@ -93,10 +80,12 @@ public class Game extends Thread {
 	private void initial_game()
 	{
 		second_frame.is_question_on = true;
-		second_frame.player1_answer = 0;
-		second_frame.player2_answer = 0;
+		player1.setAnswer(0);
+		player2.setAnswer(0);
 		is_player1_correct = 0;
 		is_player2_correct = 0;
+		setIs_player1_answer(false);
+		setIs_player2_answer(false);
 		timer.is_player1_timer_stop = false;
 		timer.is_player2_timer_stop = false;
 		timer.player1_time_remaining = 6;
@@ -143,9 +132,35 @@ public class Game extends Thread {
 		second_frame.btn6.setText("(l)" + data_base.optionc_array[question_pointer]);
 	}
 	
+	private void wait_for_answer()
+	{
+		while (true) {
+			if (second_frame.is_question_on == false) // 嚙緘嚙褕橘蕭嚙踝蕭s
+				break;
+
+			if(player1.getAnswer()!=0)
+				setIs_player1_answer(true);
+			if(player2.getAnswer()!=0)
+				setIs_player2_answer(true);
+			
+			if (player1.getAnswer() != 0 && player2.getAnswer()  != 0) // 嚙踝蕭嚙稷嚙踝蕭嚙璀嚙踝蕭嚙箴嚙踝蕭嚙踝蕭嚙緘嚙踝蕭
+			{
+				System.out.println("Both have answered.");
+				second_frame.is_question_on = false;
+				break;
+			}
+
+			try {
+				Thread.sleep(250);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private void answer_show(int question_pointer)
 	{
-		if (second_frame.is_question_on == false) // ������ܵ���
+		if (second_frame.is_question_on == false) // 嚙踝蕭嚙踝蕭嚙踝蕭傿嚙踝蕭嚙�
 		{
 			if (data_base.answer_array[question_pointer].equalsIgnoreCase("1")) {
 				second_frame.btn1.setBackground(Color.red);
@@ -167,8 +182,8 @@ public class Game extends Thread {
 			}
 		}
 		
-		choose_correct_answer_show(0,second_frame.player1_answer,question_pointer);
-		choose_correct_answer_show(1,second_frame.player2_answer,question_pointer);
+		choose_correct_answer_show(0,player1.getAnswer() ,question_pointer);
+		choose_correct_answer_show(1,player2.getAnswer(),question_pointer);
 	}
 	
 	private void choose_correct_answer_show(int id,int choose_answer,int question_pointer)
@@ -216,38 +231,55 @@ public class Game extends Thread {
 	
 	private void score(int question_pointer)
 	{
-		if (Integer.toString(second_frame.player1_answer).equals(data_base.answer_array[question_pointer]))
+		if (Integer.toString(player1.getAnswer()).equals(data_base.answer_array[question_pointer]))
 			is_player1_correct = 10;
-		if (Integer.toString(second_frame.player2_answer).equals(data_base.answer_array[question_pointer]))
+		if (Integer.toString(player2.getAnswer()).equals(data_base.answer_array[question_pointer]))
 			is_player2_correct = 10;
-		player1_score += (is_player1_correct * timer.player1_time_remaining);
-		player2_score += (is_player2_correct * timer.player2_time_remaining);
-		second_frame.label2.setText(Integer.toString(player1_score));
-		second_frame.label4.setText(Integer.toString(player2_score));
+		player1.setScore(player1.getScore() + (is_player1_correct * timer.player1_time_remaining));
+		player2.setScore(player2.getScore() + (is_player2_correct * timer.player1_time_remaining));
+		second_frame.label2.setText(Integer.toString(player1.getScore()));
+		second_frame.label4.setText(Integer.toString(player2.getScore()));
 	}
 	
 	private void final_score()
 	{
 		
-		if(player1_score>player2_score)
+		if(player1.getScore()>player2.getScore())
 		{
 			winner_name = first_frame.input_name1();
-			winner_score = Integer.toString(player1_score);
+			winner_score = Integer.toString(player1.getScore());
 		}
-		else if(player1_score<player2_score)
+		else if(player1.getScore()<player2.getScore())
 		{
 			winner_name = first_frame.input_name2();
-			winner_score = Integer.toString(player2_score);
+			winner_score = Integer.toString(player2.getScore());
 		}
 		else
 			draw = true;
 		
 	}
+	
 	public boolean isGameOver() {
 		return isGameOver;
 	}
 
 	public void setGameOver(boolean isGameOver) {
 		this.isGameOver = isGameOver;
+	}
+
+	public boolean isIs_player1_answer() {
+		return is_player1_answer;
+	}
+
+	public void setIs_player1_answer(boolean is_player1_answer) {
+		this.is_player1_answer = is_player1_answer;
+	}
+
+	public boolean isIs_player2_answer() {
+		return is_player2_answer;
+	}
+
+	public void setIs_player2_answer(boolean is_player2_answer) {
+		this.is_player2_answer = is_player2_answer;
 	}
 }

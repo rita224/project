@@ -14,8 +14,9 @@ public class Second_Frame extends JFrame implements KeyListener {
 	
 	public boolean is_question_on = false;
 	public boolean finish_Second_Frame = false;
-	public int player1_answer=0;
-	public int player2_answer=0;
+	
+	private Player player1;
+	private Player player2;
 	
 	JLabel label1 = new JLabel("Player1");
 	JLabel label2 = new JLabel("0");
@@ -34,8 +35,11 @@ public class Second_Frame extends JFrame implements KeyListener {
 	JLabel qst3 = new JLabel("問題第3行");
 	JLabel qst4 = new JLabel("問題第4行");
 	
-	public Second_Frame() {
+	public Second_Frame(Player player1,Player player2) {
 		
+		this.player1 = player1;
+		this.player2 = player2;
+
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
@@ -144,33 +148,33 @@ public class Second_Frame extends JFrame implements KeyListener {
 		// TODO Auto-generated method stub
 		if(is_question_on == true)
 		{
-			if(this.player1_answer==0)
+			if(player1.getAnswer()==0)
 			{
 				if (e.getKeyCode() == KeyEvent.VK_A) {
-					this.player1_answer = 1;
+					player1.setAnswer(1);
 					btn1.setBackground(Color.yellow);
 					btn2.setBackground(Color.gray);
 					btn3.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_S) {
-					this.player1_answer = 2;
+					player1.setAnswer(2);
 					btn1.setBackground(Color.gray);
 					btn2.setBackground(Color.yellow);
 					btn3.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_D) {
-					this.player1_answer = 3;
+					player1.setAnswer(3);
 					btn1.setBackground(Color.gray);
 					btn2.setBackground(Color.gray);
 					btn3.setBackground(Color.yellow);
 				}
 			}
-			if(this.player2_answer==0)
+			if(player2.getAnswer()==0)
 			{
 				if (e.getKeyCode() == KeyEvent.VK_J) {
-					this.player2_answer = 1;
+					player2.setAnswer(1);
 					btn4.setBackground(Color.yellow);
 					btn5.setBackground(Color.gray);
 					btn6.setBackground(Color.gray);
@@ -178,14 +182,14 @@ public class Second_Frame extends JFrame implements KeyListener {
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_K) {
-					this.player2_answer = 2;
+					player2.setAnswer(2);
 					btn4.setBackground(Color.gray);
 					btn5.setBackground(Color.yellow);
 					btn6.setBackground(Color.gray);
 				}
 				
 				else if (e.getKeyCode() == KeyEvent.VK_L) {
-					this.player2_answer = 3;
+					player2.setAnswer(3);
 					btn4.setBackground(Color.gray);
 					btn5.setBackground(Color.gray);
 					btn6.setBackground(Color.yellow);

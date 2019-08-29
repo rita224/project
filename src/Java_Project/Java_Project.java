@@ -26,15 +26,6 @@ public class Java_Project {
 					{
 						e.printStackTrace();
 					}
-					
-			//Second_Frame�C���e��
-			
-			Second_Frame second_frame = new Second_Frame();
-			second_frame.setVisible(true);
-			second_frame.setResizable(false);
-			second_frame.label1.setText(first_frame.input_name1());
-			second_frame.label3.setText(first_frame.input_name2());
-			System.out.println("Second frame is created");
 			
 		//���a�]�w
 		int id=0;
@@ -43,9 +34,20 @@ public class Java_Project {
 		Player player2 = new Player(id,first_frame.input_name2());
 		id++;
 		System.out.println("players already set");
+		
+		//GUI�t�m
+		
+			//Second_Frame�C���e��
+			
+			Second_Frame second_frame = new Second_Frame(player1,player2);
+			second_frame.setVisible(true);
+			second_frame.setResizable(false);
+			second_frame.label1.setText(first_frame.input_name1());
+			second_frame.label3.setText(first_frame.input_name2());
+			System.out.println("Second frame is created");
 
 		//��l�ƹC���{��
-		Game game = new Game(data_base,second_frame,first_frame);
+		Game game = new Game(data_base,second_frame,first_frame,player1,player2);
 		game.start();  //�}�l�C��
 		System.out.println("game starts");
 		while(true)

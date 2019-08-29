@@ -27,7 +27,7 @@ public class Timer extends Thread{
 			{
 				for(time = 5;time>=-1;time--) {  //計時器本體
 					
-					if(second_frame.player1_answer!=0 && second_frame.player2_answer!=0)
+					if((game.isIs_player1_answer()==true) && (game.isIs_player2_answer()==true))
 						break;
 					
 					if(time < 0)
@@ -49,9 +49,9 @@ public class Timer extends Thread{
 					}catch(Exception e) {
 						e.printStackTrace();
 				     }
-					if(second_frame.player1_answer==0)
+					if(game.isIs_player1_answer()==false)
 						player1_time_remaining--;
-					if(second_frame.player2_answer==0)
+					if(game.isIs_player2_answer()==false)
 						player2_time_remaining--;
 				}
 			}
