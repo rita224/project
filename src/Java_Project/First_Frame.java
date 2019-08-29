@@ -11,18 +11,16 @@ import javax.swing.JTextField;
 
 public class First_Frame extends JFrame implements ActionListener {
 	
-	public boolean finish_First_Frame = false;
-	public String player1_name;
-	public String player2_name;
-	Data_Base data_base;
+	private boolean isFirstFrameFinish = false;
+	private Data_Base data_base;
 	
 //	public String First_Frame_Name = false;
 	
-	JLabel lb1 = new JLabel("Enter player1 name here:");
-	JTextField input_name1 = new JTextField(50);
-	JLabel lb2 = new JLabel("Enter player2 name here:");
-	JTextField input_name2 = new JTextField(50);
-	JButton btn = new JButton("Confirm");
+	private JLabel lb1 = new JLabel("Enter player1 name here:");
+	private JTextField input_name1 = new JTextField(50);
+	private JLabel lb2 = new JLabel("Enter player2 name here:");
+	private JTextField input_name2 = new JTextField(50);
+	public JButton btn = new JButton("Confirm");
 	
 	public First_Frame(Data_Base data_base){
 		
@@ -62,34 +60,28 @@ public class First_Frame extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		// implement button listener
-		player1_name = input_name1.getText();
-		player2_name = input_name2.getText();
-		
-		finish_First_Frame = true;
+		setFirstFrameFinish(true);
 		this.dispose();
-		
-		//初始化遊戲畫面
-		Second_Frame second_frame = new Second_Frame();
-		second_frame.setVisible(true);
-		second_frame.setResizable(false);
-		System.out.println("Second frame is created");
-		second_frame.label1.setText(player1_name);
-		second_frame.label3.setText(player2_name);
-
-		//初始化遊戲
-		Game game = new Game(data_base,second_frame,this);
-		game.start();  //開始遊戲
-		System.out.println("game start");
-		
-		//玩家設定
-		int id=0;
-		Player player1 = new Player(id,this.player1_name);
-		id++;
-		Player player2 = new Player(id,this.player2_name);
-		id++;
-		//player1.start();  //開始玩家執行緒
-		//player2.start();
-		System.out.println("players already set");
+		System.out.println("First frame is disposed.");
 	}
 
+	public boolean isFirstFrameFinish() {
+		return isFirstFrameFinish;
+	}
+
+	public void setFirstFrameFinish(boolean isFirstFrameFinish) {
+		this.isFirstFrameFinish = isFirstFrameFinish;
+	}
+
+	public String input_name1()
+	{
+		return input_name1.getText();
+
+	}
+	
+	public String input_name2()
+	{
+		return input_name2.getText();
+
+	}
 }

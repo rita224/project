@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Game extends Thread {
 
+	private boolean isGameOver = false;
 	private int player1_score = 0;
 	private int is_player1_correct = 0;
 	private int player2_score = 0;
@@ -15,10 +16,10 @@ public class Game extends Thread {
 	public String winner_score = "";
 	public boolean draw = false;
 	
-	Data_Base data_base;
-	Timer timer;
-	Second_Frame second_frame;
-	First_Frame first_frame;
+	private Data_Base data_base;
+	private Timer timer;
+	private Second_Frame second_frame;
+	private First_Frame first_frame;
 	
 	Game(Data_Base data_base, Second_Frame second_frame,First_Frame first_frame) // 建構子
 	{
@@ -37,7 +38,7 @@ public class Game extends Thread {
 
 		timer.start();
 
-		for (int run_question_num = 1; run_question_num <= 5; run_question_num++) {
+		for (int run_question_num = 1; run_question_num <= 1; run_question_num++) {
 
 			// 初始化
 			second_frame.is_question_on = true;
@@ -57,34 +58,34 @@ public class Game extends Thread {
 			second_frame.btn6.setBackground(null);
 
 			// 出題
-			question = rand.nextInt(data_base.getNum_question());
+			question = rand.nextInt(data_base.num_question);
 
 			for (int i = 0; i < 4; i++) // 題目排版
 				str[i] = "";
 			round = 0;
-			if (data_base.getQuestion_array()[question].length() > 15) {
-				while (data_base.getQuestion_array()[question].length() / 15 >= round) {
-					if (data_base.getQuestion_array()[question].length() / 15 == round)
-						for (int i = 0; i < data_base.getQuestion_array()[question].length() % 15; i++)
-							str[round] += data_base.getQuestion_array()[question].charAt(i + 15 * round);
+			if (data_base.question_array[question].length() > 15) {
+				while (data_base.question_array[question].length() / 15 >= round) {
+					if (data_base.question_array[question].length() / 15 == round)
+						for (int i = 0; i < data_base.question_array[question].length() % 15; i++)
+							str[round] += data_base.question_array[question].charAt(i + 15 * round);
 					else
 						for (int i = 0; i < 15; i++)
-							str[round] += data_base.getQuestion_array()[question].charAt(i + 15 * round);
+							str[round] += data_base.question_array[question].charAt(i + 15 * round);
 					round++;
 				}
 			} else
-				str[0] = data_base.getQuestion_array()[question];
+				str[0] = data_base.question_array[question];
 
 			second_frame.qst1.setText(str[0]);
 			second_frame.qst2.setText(str[1]);
 			second_frame.qst3.setText(str[2]);
 			second_frame.qst4.setText(str[3]);
-			second_frame.btn1.setText("(a)" + data_base.getOptiona_array()[question]);
-			second_frame.btn2.setText("(s)" + data_base.getOptionb_array()[question]);
-			second_frame.btn3.setText("(d)" + data_base.getOptionc_array()[question]);
-			second_frame.btn4.setText("(j)" + data_base.getOptiona_array()[question]);
-			second_frame.btn5.setText("(k)" + data_base.getOptionb_array()[question]);
-			second_frame.btn6.setText("(l)" + data_base.getOptionc_array()[question]);
+			second_frame.btn1.setText("(a)" + data_base.optiona_array[question]);
+			second_frame.btn2.setText("(s)" + data_base.optionb_array[question]);
+			second_frame.btn3.setText("(d)" + data_base.optionc_array[question]);
+			second_frame.btn4.setText("(j)" + data_base.optiona_array[question]);
+			second_frame.btn5.setText("(k)" + data_base.optionb_array[question]);
+			second_frame.btn6.setText("(l)" + data_base.optionc_array[question]);
 
 			// 等待回答或計時器歸零
 			while (true) {
@@ -109,19 +110,19 @@ public class Game extends Thread {
 			// display answer
 			if (second_frame.is_question_on == false) // 紅色顯示答案
 			{
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("1")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("1")) {
 					second_frame.btn1.setBackground(Color.red);
 					second_frame.btn4.setBackground(Color.red);
 					second_frame.btn1.setOpaque(true);
 					second_frame.btn4.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("2")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("2")) {
 					second_frame.btn2.setBackground(Color.red);
 					second_frame.btn5.setBackground(Color.red);
 					second_frame.btn2.setOpaque(true);
 					second_frame.btn5.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("3")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("3")) {
 					second_frame.btn3.setBackground(Color.red);
 					second_frame.btn6.setBackground(Color.red);
 					second_frame.btn3.setOpaque(true);
@@ -129,46 +130,46 @@ public class Game extends Thread {
 				}
 			}
 
-			if (Integer.toString(second_frame.player1_answer).equals(data_base.getAnswer_array()[question])) // if player1
+			if (Integer.toString(second_frame.player1_answer).equals(data_base.answer_array[question])) // if player1
 																										// ans is
 																										// correct
 			{
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("1")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("1")) {
 					second_frame.btn1.setBackground(Color.green);
 					second_frame.btn1.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("2")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("2")) {
 					second_frame.btn2.setBackground(Color.green);
 					second_frame.btn2.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("3")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("3")) {
 					second_frame.btn3.setBackground(Color.green);
 					second_frame.btn3.setOpaque(true);
 				}
 			}
 
-			if (Integer.toString(second_frame.player2_answer).equals(data_base.getAnswer_array()[question])) // if player2
+			if (Integer.toString(second_frame.player2_answer).equals(data_base.answer_array[question])) // if player2
 																										// ans is
 																										// correct
 			{
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("1")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("1")) {
 					second_frame.btn4.setBackground(Color.green);
 					second_frame.btn4.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("2")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("2")) {
 					second_frame.btn5.setBackground(Color.green);
 					second_frame.btn5.setOpaque(true);
 				}
-				if (data_base.getAnswer_array()[question].equalsIgnoreCase("3")) {
+				if (data_base.answer_array[question].equalsIgnoreCase("3")) {
 					second_frame.btn6.setBackground(Color.green);
 					second_frame.btn6.setOpaque(true);
 				}
 			}
 
 			// compute scores
-			if (Integer.toString(second_frame.player1_answer).equals(data_base.getAnswer_array()[question]))
+			if (Integer.toString(second_frame.player1_answer).equals(data_base.answer_array[question]))
 				is_player1_correct = 10;
-			if (Integer.toString(second_frame.player2_answer).equals(data_base.getAnswer_array()[question]))
+			if (Integer.toString(second_frame.player2_answer).equals(data_base.answer_array[question]))
 				is_player2_correct = 10;
 			player1_score += (is_player1_correct * timer.player1_time_remaining);
 			player2_score += (is_player2_correct * timer.player2_time_remaining);
@@ -183,19 +184,28 @@ public class Game extends Thread {
 		}
 		if(player1_score>player2_score)
 		{
-			winner_name = first_frame.player1_name;
+			winner_name = first_frame.input_name1();
 			winner_score = Integer.toString(player1_score);
 		}
 		else if(player1_score<player2_score)
 		{
-			winner_name = first_frame.player2_name;
+			winner_name = first_frame.input_name2();
 			winner_score = Integer.toString(player2_score);
 		}
 		else
-			draw =true;
+			draw = true;
+		
+		isGameOver = true;
 		second_frame.dispose();
-		Final_Frame final_frame = new Final_Frame(this);  //順便在結束登入畫面後 1.開啟Second frame 2.初始化遊戲進程 3.玩家設置
-		final_frame.setVisible(true);
-		final_frame.setResizable(false);
+		
+		System.out.println("game.run() thread over.");
+	}
+
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 }
