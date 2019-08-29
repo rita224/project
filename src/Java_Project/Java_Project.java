@@ -2,14 +2,12 @@ package Java_Project;
 
 public class Java_Project {
 	public static void main(String[] args) {
-		
-		//ï¿½ï¿½lï¿½Æ¸ï¿½Æ®w
+		//ªì©l¤Æ¸ê®Æ®w
 		Data_Base data_base=new Data_Base();
 		
-		//GUIï¿½tï¿½m
-		
-			//First_Frameï¿½nï¿½Jï¿½eï¿½ï¿½ hello123
-			First_Frame first_frame = new First_Frame(data_base);  //ï¿½ï¿½ï¿½Kï¿½bï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Jï¿½eï¿½ï¿½ï¿½ï¿½ 1.ï¿½}ï¿½ï¿½Second frame 2.ï¿½ï¿½lï¿½Æ¹Cï¿½ï¿½ï¿½iï¿½{ 3.ï¿½ï¿½ï¿½aï¿½]ï¿½m
+		//GUI°t¸m		
+		//First_Frameµn¤Jµe­±
+		First_Frame first_frame = new First_Frame(data_base);  //¶¶«K¦bµ²§ôµn¤Jµe­±«á 1.¶}±ÒSecond frame 2.ªì©l¤Æ¹CÀ¸¶iµ{ 3.ª±®a³]¸m
 			first_frame.setVisible(true);
 			first_frame.setResizable(false);
 	}
