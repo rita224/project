@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 public class First_Frame extends JFrame implements ActionListener {
 	
 	private boolean isFirstFrameFinish = false;
-	private Data_Base data_base;
 	
 //	public String First_Frame_Name = false;
 	
@@ -23,7 +22,6 @@ public class First_Frame extends JFrame implements ActionListener {
 	
 	public First_Frame(Data_Base data_base){
 		
-		this.data_base=data_base;
 		setSize(800,600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
