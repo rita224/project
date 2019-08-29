@@ -42,8 +42,8 @@ public class Java_Project {
 			Second_Frame second_frame = new Second_Frame(player1,player2);
 			second_frame.setVisible(true);
 			second_frame.setResizable(false);
-			second_frame.label1.setText(first_frame.input_name1());
-			second_frame.label3.setText(first_frame.input_name2());
+			second_frame.getLabel1().setText(first_frame.input_name1());
+			second_frame.getLabel3().setText(first_frame.input_name2());
 			System.out.println("Second frame is created");
 
 		//��l�ƹC���{��

@@ -46,7 +46,7 @@ public class Game extends Thread {
 			initial_game();
 
 			// 嚙碼嚙瘩
-			question_pointer = rand.nextInt(data_base.num_question);
+			question_pointer = rand.nextInt(data_base.getNum_question());
 
 			// 嚙瘩嚙諍排迎蕭
 			question_setText(question_pointer);
@@ -86,16 +86,16 @@ public class Game extends Thread {
 		is_player2_correct = 0;
 		setIs_player1_answer(false);
 		setIs_player2_answer(false);
-		timer.is_player1_timer_stop = false;
-		timer.is_player2_timer_stop = false;
-		timer.player1_time_remaining = 6;
-		timer.player2_time_remaining = 6;
-		second_frame.btn1.setBackground(null);
-		second_frame.btn2.setBackground(null);
-		second_frame.btn3.setBackground(null);
-		second_frame.btn4.setBackground(null);
-		second_frame.btn5.setBackground(null);
-		second_frame.btn6.setBackground(null);
+		timer.setIs_player1_timer_stop(false);
+		timer.setIs_player2_timer_stop(false);
+		timer.setPlayer1_time_remaining(6);
+		timer.setPlayer2_time_remaining(6);
+		second_frame.getBtn1().setBackground(null);
+		second_frame.getBtn2().setBackground(null);
+		second_frame.getBtn3().setBackground(null);
+		second_frame.getBtn4().setBackground(null);
+		second_frame.getBtn5().setBackground(null);
+		second_frame.getBtn6().setBackground(null);
 	}
 	
 	private void question_setText(int question_pointer)
@@ -103,33 +103,33 @@ public class Game extends Thread {
 		for (int i = 0; i < 4; i++)
 			str[i] = "";
 		round = 0;
-		if (data_base.question_array[question_pointer].length() > 15) {
-			while (data_base.question_array[question_pointer].length() / 15 >= round) {
-				if (data_base.question_array[question_pointer].length() / 15 == round)
-					for (int i = 0; i < data_base.question_array[question_pointer].length() % 15; i++)
-						str[round] += data_base.question_array[question_pointer].charAt(i + 15 * round);
+		if (data_base.getQuestion_array()[question_pointer].length() > 15) {
+			while (data_base.getQuestion_array()[question_pointer].length() / 15 >= round) {
+				if (data_base.getQuestion_array()[question_pointer].length() / 15 == round)
+					for (int i = 0; i < data_base.getQuestion_array()[question_pointer].length() % 15; i++)
+						str[round] += data_base.getQuestion_array()[question_pointer].charAt(i + 15 * round);
 				else
 					for (int i = 0; i < 15; i++)
-						str[round] += data_base.question_array[question_pointer].charAt(i + 15 * round);
+						str[round] += data_base.getQuestion_array()[question_pointer].charAt(i + 15 * round);
 				round++;
 			}
 		} else
-			str[0] = data_base.question_array[question_pointer];
+			str[0] = data_base.getQuestion_array()[question_pointer];
 		
-		second_frame.qst1.setText(str[0]);
-		second_frame.qst2.setText(str[1]);
-		second_frame.qst3.setText(str[2]);
-		second_frame.qst4.setText(str[3]);
+		second_frame.getQst1().setText(str[0]);
+		second_frame.getQst2().setText(str[1]);
+		second_frame.getQst3().setText(str[2]);
+		second_frame.getQst4().setText(str[3]);
 	}
 	
 	private void option_setText(int question_pointer)
 	{
-		second_frame.btn1.setText("(a)" + data_base.optiona_array[question_pointer]);
-		second_frame.btn2.setText("(s)" + data_base.optionb_array[question_pointer]);
-		second_frame.btn3.setText("(d)" + data_base.optionc_array[question_pointer]);
-		second_frame.btn4.setText("(j)" + data_base.optiona_array[question_pointer]);
-		second_frame.btn5.setText("(k)" + data_base.optionb_array[question_pointer]);
-		second_frame.btn6.setText("(l)" + data_base.optionc_array[question_pointer]);
+		second_frame.getBtn1().setText("(a)" + data_base.getOptiona_array()[question_pointer]);
+		second_frame.getBtn2().setText("(s)" + data_base.getOptionb_array()[question_pointer]);
+		second_frame.getBtn3().setText("(d)" + data_base.getOptionc_array()[question_pointer]);
+		second_frame.getBtn4().setText("(j)" + data_base.getOptiona_array()[question_pointer]);
+		second_frame.getBtn5().setText("(k)" + data_base.getOptionb_array()[question_pointer]);
+		second_frame.getBtn6().setText("(l)" + data_base.getOptionc_array()[question_pointer]);
 	}
 	
 	private void wait_for_answer()
@@ -162,23 +162,23 @@ public class Game extends Thread {
 	{
 		if (second_frame.is_question_on == false) // 嚙踝蕭嚙踝蕭嚙踝蕭傿嚙踝蕭嚙�
 		{
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("1")) {
-				second_frame.btn1.setBackground(Color.red);
-				second_frame.btn4.setBackground(Color.red);
-				second_frame.btn1.setOpaque(true);
-				second_frame.btn4.setOpaque(true);
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("1")) {
+				second_frame.getBtn1().setBackground(Color.red);
+				second_frame.getBtn4().setBackground(Color.red);
+				second_frame.getBtn1().setOpaque(true);
+				second_frame.getBtn4().setOpaque(true);
 			}
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("2")) {
-				second_frame.btn2.setBackground(Color.red);
-				second_frame.btn5.setBackground(Color.red);
-				second_frame.btn2.setOpaque(true);
-				second_frame.btn5.setOpaque(true);
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("2")) {
+				second_frame.getBtn2().setBackground(Color.red);
+				second_frame.getBtn5().setBackground(Color.red);
+				second_frame.getBtn2().setOpaque(true);
+				second_frame.getBtn5().setOpaque(true);
 			}
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("3")) {
-				second_frame.btn3.setBackground(Color.red);
-				second_frame.btn6.setBackground(Color.red);
-				second_frame.btn3.setOpaque(true);
-				second_frame.btn6.setOpaque(true);
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("3")) {
+				second_frame.getBtn3().setBackground(Color.red);
+				second_frame.getBtn6().setBackground(Color.red);
+				second_frame.getBtn3().setOpaque(true);
+				second_frame.getBtn6().setOpaque(true);
 			}
 		}
 		
@@ -188,42 +188,42 @@ public class Game extends Thread {
 	
 	private void choose_correct_answer_show(int id,int choose_answer,int question_pointer)
 	{
-		if (Integer.toString(choose_answer).equals(data_base.answer_array[question_pointer])) // if player ans correct
+		if (Integer.toString(choose_answer).equals(data_base.getAnswer_array()[question_pointer])) // if player ans correct
 		{
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("1")) {
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("1")) {
 				if(id==0)
 				{
-					second_frame.btn1.setBackground(Color.green);
-					second_frame.btn1.setOpaque(true);
+					second_frame.getBtn1().setBackground(Color.green);
+					second_frame.getBtn1().setOpaque(true);
 				}
 				else if(id==1)
 				{
-					second_frame.btn4.setBackground(Color.green);
-					second_frame.btn4.setOpaque(true);
+					second_frame.getBtn4().setBackground(Color.green);
+					second_frame.getBtn4().setOpaque(true);
 				}
 			}
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("2")) {
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("2")) {
 				if(id==0)
 				{
-					second_frame.btn2.setBackground(Color.green);
-					second_frame.btn2.setOpaque(true);
+					second_frame.getBtn2().setBackground(Color.green);
+					second_frame.getBtn2().setOpaque(true);
 				}
 				else if(id==1)
 				{
-					second_frame.btn5.setBackground(Color.green);
-					second_frame.btn5.setOpaque(true);
+					second_frame.getBtn5().setBackground(Color.green);
+					second_frame.getBtn5().setOpaque(true);
 				}
 			}
-			if (data_base.answer_array[question_pointer].equalsIgnoreCase("3")) {
+			if (data_base.getAnswer_array()[question_pointer].equalsIgnoreCase("3")) {
 				if(id==0)
 				{
-					second_frame.btn3.setBackground(Color.green);
-					second_frame.btn3.setOpaque(true);
+					second_frame.getBtn3().setBackground(Color.green);
+					second_frame.getBtn3().setOpaque(true);
 				}
 				else if(id==1)
 				{
-					second_frame.btn6.setBackground(Color.green);
-					second_frame.btn6.setOpaque(true);
+					second_frame.getBtn6().setBackground(Color.green);
+					second_frame.getBtn6().setOpaque(true);
 				}
 			}
 		}
@@ -231,14 +231,14 @@ public class Game extends Thread {
 	
 	private void score(int question_pointer)
 	{
-		if (Integer.toString(player1.getAnswer()).equals(data_base.answer_array[question_pointer]))
+		if (Integer.toString(player1.getAnswer()).equals(data_base.getAnswer_array()[question_pointer]))
 			is_player1_correct = 10;
-		if (Integer.toString(player2.getAnswer()).equals(data_base.answer_array[question_pointer]))
+		if (Integer.toString(player2.getAnswer()).equals(data_base.getAnswer_array()[question_pointer]))
 			is_player2_correct = 10;
-		player1.setScore(player1.getScore() + (is_player1_correct * timer.player1_time_remaining));
-		player2.setScore(player2.getScore() + (is_player2_correct * timer.player1_time_remaining));
-		second_frame.label2.setText(Integer.toString(player1.getScore()));
-		second_frame.label4.setText(Integer.toString(player2.getScore()));
+		player1.setScore(player1.getScore() + (is_player1_correct * timer.getPlayer1_time_remaining()));
+		player2.setScore(player2.getScore() + (is_player2_correct * timer.getPlayer2_time_remaining()));
+		second_frame.getLabel2().setText(Integer.toString(player1.getScore()));
+		second_frame.getLabel4().setText(Integer.toString(player2.getScore()));
 	}
 	
 	private void final_score()

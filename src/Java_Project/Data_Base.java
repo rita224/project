@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Data_Base {
 	
-	int num_question=20;
-	String[] question_array;
-	String[] optiona_array;
-	String[] optionb_array;
-	String[] optionc_array;
-	String[] answer_array;
+	private int num_question=20;
+	private String[] question_array;
+	private String[] optiona_array;
+	private String[] optionb_array;
+	private String[] optionc_array;
+	private String[] answer_array;
 	
 	Data_Base()
 	{
