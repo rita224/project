@@ -16,18 +16,18 @@ public class Data_Base {
 	Data_Base()
 	{
 		//變數宣告
-		String[] question_array = new String[num_question];
-		String[] optiona_array = new String[num_question];
-		String[] optionb_array = new String[num_question];
-		String[] optionc_array = new String[num_question];
-		String[] answer_array = new String[num_question];
+		String[] question_array = new String[getNum_question()];
+		String[] optiona_array = new String[getNum_question()];
+		String[] optionb_array = new String[getNum_question()];
+		String[] optionc_array = new String[getNum_question()];
+		String[] answer_array = new String[getNum_question()];
 		
 
 		//存取資料庫(scanner)
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new FileInputStream("C:\\Users\\USER\\Desktop\\Coding-X\\Java_Project資料夾\\source\\example.txt"));
-			for(int i =0;i<num_question;i++)
+			for(int i =0;i<getNum_question();i++)
 			{
 				question_array[i]=scanner.nextLine();
 				optiona_array[i]=scanner.nextLine();
@@ -44,5 +44,29 @@ public class Data_Base {
 		this.optionb_array=optionb_array;
 		this.optionc_array=optionc_array;
 		this.answer_array=answer_array;
+	}
+
+	public int getNum_question() {
+		return num_question;
+	}
+
+	public String[] getQuestion_array() {
+		return question_array;
+	}
+
+	public String[] getOptiona_array() {
+		return optiona_array;
+	}
+
+	public String[] getOptionb_array() {
+		return optionb_array;
+	}
+
+	public String[] getOptionc_array() {
+		return optionc_array;
+	}
+
+	public String[] getAnswer_array() {
+		return answer_array;
 	}
 }

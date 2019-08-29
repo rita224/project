@@ -21,7 +21,7 @@ public class Game extends Thread {
 	private Second_Frame second_frame;
 	private First_Frame first_frame;
 	
-	Game(Data_Base data_base, Second_Frame second_frame,First_Frame first_frame) // «Øºc¤l
+	Game(Data_Base data_base, Second_Frame second_frame,First_Frame first_frame) // ï¿½Øºcï¿½l
 	{
 		this.timer = new Timer(second_frame, this);
 		this.data_base = data_base;
@@ -29,7 +29,7 @@ public class Game extends Thread {
 		this.first_frame = first_frame;
 	}
 
-	public void run() // ¶]¹CÀ¸¤º®e
+	public void run() // ï¿½]ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½e
 	{
 		Random rand = new Random();
 		int question_pointer = 0;
@@ -38,26 +38,26 @@ public class Game extends Thread {
 
 		timer.start();
 
-		for (int run_question_num = 1; run_question_num <= 1; run_question_num++) {
+		for (int run_question_num = 1; run_question_num <= 5; run_question_num++) {
 
-			// ªì©l¤Æ
+			// ï¿½ï¿½lï¿½ï¿½
 			initial_game();
 
-			// ¥XÃD
+			// ï¿½Xï¿½D
 			question_pointer = rand.nextInt(data_base.num_question);
 
-			// ÃD¥Ø±Æª©
+			// ï¿½Dï¿½Ø±Æªï¿½
 			question_setText(question_pointer);
 			
-			// ¿ï¶µ±Æª©
+			// ï¿½ï¶µï¿½Æªï¿½
 			option_setText(question_pointer);
 
-			// µ¥«Ý¦^µª©Î­p®É¾¹Âk¹s
+			// ï¿½ï¿½ï¿½Ý¦^ï¿½ï¿½ï¿½Î­pï¿½É¾ï¿½ï¿½kï¿½s
 			while (true) {
-				if (second_frame.is_question_on == false) // ­p®É¾¹¨ì¹s
+				if (second_frame.is_question_on == false) // ï¿½pï¿½É¾ï¿½ï¿½ï¿½s
 					break;
 
-				if (second_frame.player1_answer != 0 && second_frame.player2_answer != 0) // ³£¦^µª¡A´£«eµ²§ô­p®É
+				if (second_frame.player1_answer != 0 && second_frame.player2_answer != 0) // ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½
 				{
 					second_frame.is_question_on = false;
 					break;
@@ -70,10 +70,10 @@ public class Game extends Thread {
 				}
 			}
 
-			// ¹ïµª®×¡B²Î­p¤À¼Æ
+			// ï¿½ïµªï¿½×¡Bï¿½Î­pï¿½ï¿½ï¿½ï¿½
 			answer_show(question_pointer);
 
-			// µ²ºâ¦¹ÃD¦¨ÁZ
+			// ï¿½ï¿½ï¿½â¦¹ï¿½Dï¿½ï¿½ï¿½Z
 			score(question_pointer);
 
 			try {
@@ -145,7 +145,7 @@ public class Game extends Thread {
 	
 	private void answer_show(int question_pointer)
 	{
-		if (second_frame.is_question_on == false) // ¬õ¦âÅã¥Üµª®×
+		if (second_frame.is_question_on == false) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½
 		{
 			if (data_base.answer_array[question_pointer].equalsIgnoreCase("1")) {
 				second_frame.btn1.setBackground(Color.red);

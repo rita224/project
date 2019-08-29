@@ -2,15 +2,14 @@ package Java_Project;
 
 public class Java_Project {
 	public static void main(String[] args) {
-		
-		//ªì©l¤Æ¸ê®Æ®w
+		//ï¿½ï¿½lï¿½Æ¸ï¿½Æ®w
 		Data_Base data_base=new Data_Base();
 		
-		//GUI°t¸m
+		//GUIï¿½tï¿½m
 		
-			//First_Frameµn¤Jµe­±
+			//First_Frameï¿½nï¿½Jï¿½eï¿½ï¿½
 
-			First_Frame first_frame = new First_Frame(data_base);  //¶¶«K¦bµ²§ôµn¤Jµe­±«á 1.¶}±ÒSecond frame 2.ªì©l¤Æ¹CÀ¸¶iµ{ 3.ª±®a³]¸m
+			First_Frame first_frame = new First_Frame(data_base);  //ï¿½ï¿½ï¿½Kï¿½bï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Jï¿½eï¿½ï¿½ï¿½ï¿½ 1.ï¿½}ï¿½ï¿½Second frame 2.ï¿½ï¿½lï¿½Æ¹Cï¿½ï¿½ï¿½iï¿½{ 3.ï¿½ï¿½ï¿½aï¿½]ï¿½m
 			first_frame.setVisible(true);
 			first_frame.setResizable(false);
 			
@@ -28,7 +27,7 @@ public class Java_Project {
 						e.printStackTrace();
 					}
 					
-			//Second_Frame¹CÀ¸µe­±
+			//Second_Frameï¿½Cï¿½ï¿½ï¿½eï¿½ï¿½
 			
 			Second_Frame second_frame = new Second_Frame();
 			second_frame.setVisible(true);
@@ -37,7 +36,7 @@ public class Java_Project {
 			second_frame.label3.setText(first_frame.input_name2());
 			System.out.println("Second frame is created");
 			
-		//ª±®a³]©w
+		//ï¿½ï¿½ï¿½aï¿½]ï¿½w
 		int id=0;
 		Player player1 = new Player(id,first_frame.input_name1());
 		id++;
@@ -45,9 +44,9 @@ public class Java_Project {
 		id++;
 		System.out.println("players already set");
 
-		//ªì©l¤Æ¹CÀ¸µ{§Ç
+		//ï¿½ï¿½lï¿½Æ¹Cï¿½ï¿½ï¿½{ï¿½ï¿½
 		Game game = new Game(data_base,second_frame,first_frame);
-		game.start();  //¶}©l¹CÀ¸
+		game.start();  //ï¿½}ï¿½lï¿½Cï¿½ï¿½
 		System.out.println("game starts");
 		while(true)
 			if(game.isGameOver()==true)
@@ -63,10 +62,10 @@ public class Java_Project {
 					e.printStackTrace();
 				}
 				
-		//GUI°t¸m
+		//GUIï¿½tï¿½m
 
-			//Final_Frameµ²ºâµe­±
-			Final_Frame final_frame = new Final_Frame(game);  //¶¶«K¦bµ²§ôµn¤Jµe­±«á 1.¶}±ÒSecond frame 2.ªì©l¤Æ¹CÀ¸¶iµ{ 3.ª±®a³]¸m
+			//Final_Frameï¿½ï¿½ï¿½ï¿½eï¿½ï¿½
+			Final_Frame final_frame = new Final_Frame(game);  //ï¿½ï¿½ï¿½Kï¿½bï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Jï¿½eï¿½ï¿½ï¿½ï¿½ 1.ï¿½}ï¿½ï¿½Second frame 2.ï¿½ï¿½lï¿½Æ¹Cï¿½ï¿½ï¿½iï¿½{ 3.ï¿½ï¿½ï¿½aï¿½]ï¿½m
 			final_frame.setVisible(true);
 			final_frame.setResizable(false);
 			System.out.println("Final frame is created");
